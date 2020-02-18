@@ -5,8 +5,10 @@ ruby '2.5.7'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.3'
-
 gem 'bcrypt', '3.1.11'
+gem 'faker'
+gem 'will_paginate'
+gem 'bootstrap-will_paginate'
 gem 'bootstrap-sass', '3.4.1'
 gem 'jquery-rails'
 # Use sqlite3 as the database for Active Record
