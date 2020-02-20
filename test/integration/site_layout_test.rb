@@ -7,7 +7,9 @@ class SiteLayoutTest < ActionDispatch::IntegrationTest
   end
 	test "the truth" do
      log_in_as(@user)
-  #   assert true
+      assert true
+
+
 	  get root_path
 	  assert_template 'static_pages/home'
 	  assert_select "a[href=?]", root_path, count: 2
@@ -15,14 +17,16 @@ class SiteLayoutTest < ActionDispatch::IntegrationTest
 	  assert_select "a[href=?]", about_path
 	  assert_select "a[href=?]", contact_path
 	  assert_select "a[href=?]", users_path
+#下二つのテストいる？
 #	  assert_select "a[href=?]", user_path
 #	  assert_select "a[href=?]", edit_user_path
 
-	  	get contact_path
+		get contact_path
 		assert_select "title", full_title("Contact")
 
 		get signup_path
 		assert_select "title", full_title("Sign up")
+
    end
    test "log out the truth" do
 	  get root_path
