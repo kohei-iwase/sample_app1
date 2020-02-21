@@ -6,7 +6,6 @@ class UserTest < ActiveSupport::TestCase
 	def setup
 		@user = User.new(name: "Example User", email: "user@example.com",
 				password: "foobar", password_confirmation: "foobar")
-
 	end
 
 	test "should be valid" do
@@ -62,7 +61,7 @@ class UserTest < ActiveSupport::TestCase
 		mixed_case_email = "Foo@ExAMPle.CoM"
 		@user.email = mixed_case_email
 		@user.save
-		assert_equal mixed_case_email.downcase, @user.reload.email 
+		assert_equal mixed_case_email.downcase, @user.reload.email
 	end
 
 	test "password should be present (nonblank)" do
@@ -85,5 +84,16 @@ class UserTest < ActiveSupport::TestCase
 		assert_difference 'Micropost.count', -1 do
 			@user.destroy
 		end
+	end
+
+	test "should follow and unfollow user" do
+		michael = users(:michael)
+		archer = users(:archer)
+		assert_not michael.following?(archer)
+		michael.follow(archer)
+		assert michael.following?(archer)
+		assert archer.followers.include?(michael)
+		michael.unfollow(archer)
+		assert_not michael.following?(archer)
 	end
 end
