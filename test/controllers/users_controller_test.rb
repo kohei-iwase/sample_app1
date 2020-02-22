@@ -30,15 +30,14 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
 	  	assert_redirected_to login_url
 	  end
 
-#他のユーザーがadminになるかテスト、後で作る
-#	   test "should not allow the admin attribute to be edited via the web" do
-#	   	log_in_as(@other_user)
-#		assert_not @other_user.admin?
-#		patch user_path(@other_user), params: {
-#										user: { password: password,
-#												password_confirmation: password}}
- #     assert_not @other_user.true.admin?
-  #end
+		#adminじゃないアーチャーくんがadminになるかテスト
+	   test "should not allow the admin attribute to be edited via the web" do
+	   	log_in_as(@other_user)
+		assert_not @other_user.admin?
+		patch user_path(@other_user), params: { user: { name: @other_user.name,
+														email:@other_user.email }}
+        assert_not @other_user.admin?
+  end
 
 	test "should redirect destroy when not logged in" do 
 		assert_no_difference 'User.count' do
