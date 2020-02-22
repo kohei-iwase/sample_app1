@@ -46,6 +46,15 @@ class User < ApplicationRecord
 		update_attribute(:remember_digest, nil)
 	end
 
+	#アカウントの有効化
+	def activate
+		update_columns(activated: true, activated_at: Time.zone.now)
+	end
+	#アカウント有効化メールの送信
+	def send_activation_email
+		UserMailer.account_activation(self).deliver_now
+	end
+
 	def feed
 		following_ids = "SELECT followed_id From relationships
 						WHERE follower_id = :user_id"
