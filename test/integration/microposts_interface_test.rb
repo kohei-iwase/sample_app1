@@ -8,7 +8,7 @@ class MicropostsInterfaceTest < ActionDispatch::IntegrationTest
   	@user = users(:michael)
   end
 
-#画像部分はバグかも
+#画像テストはバグるので後回し
 #  test "micropost interface" do
 #  	log_in_as(@user)
 #  	get root_path

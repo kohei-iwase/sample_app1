@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 ruby '2.5.7'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.2.4.1'
+gem 'rails'
 gem 'bcrypt', '3.1.11'
 gem 'faker', '2.2.2'
 gem 'rubocop', '~> 0.47.1'

@@ -17,7 +17,7 @@ class SiteLayoutTest < ActionDispatch::IntegrationTest
 	  assert_select "a[href=?]", about_path
 	  assert_select "a[href=?]", contact_path
 	  assert_select "a[href=?]", users_path
-#下二つのテストいる？
+#下二つのテストたぶんいらない
 #	  assert_select "a[href=?]", user_path
 #	  assert_select "a[href=?]", edit_user_path
 

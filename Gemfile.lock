@@ -472,7 +472,7 @@ DEPENDENCIES
   mini_magick (= 4.10.1)
   minitest-reporters
   puma (~> 3.11)
-  rails (~> 5.2.4.1)
+  rails
   rails-controller-testing (= 1.0.2)
   refile!
   refile-mini_magick
