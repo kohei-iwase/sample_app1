@@ -10,7 +10,7 @@ class PasswordResetsController < ApplicationController
   	@user = User.find_by(email: params[:password_reset][:email].downcase)
   	if @user
   		@user.create_reset_digest
-  		@user.send_password_rest_smail
+  		@user.send_password_reset_email
   		flash[:info] = "Email sent with password reset instructions"
   		redirect_to root_url
   	else
@@ -28,6 +28,7 @@ class PasswordResetsController < ApplicationController
   		render 'edit'
   	elsif @user.update_attributes(user_params)
   		log_in @user
+  		@user.update_attribute(:reset_digest, nil)
   		flash[:success] = "Password has been reset."
   		redirect_to @user
   	else
@@ -58,10 +59,11 @@ class PasswordResetsController < ApplicationController
   		end
   	end
   	#トークンが期限切れか確認
-  	def check_expritation
-  		if @user.password_reset_expired?
-  			flash[:danger] = "password reset has exired."
-  			redirect_to new_password_rest_url
-  		end
+
+  	def check_expiration
+  #		if @user.password_reset_expired?
+  		flash[:danger] = "Password reset has expired." 
+  		redirect_to new_password_reset_url
+#  		end
   	end
 end
